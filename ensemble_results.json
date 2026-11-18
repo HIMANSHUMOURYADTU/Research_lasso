@@ -1,0 +1,128 @@
+{
+  "seeds": [
+    0,
+    1,
+    7,
+    21,
+    42
+  ],
+  "splits": [
+    {
+      "seed": 0,
+      "Bagging": {
+        "r2": 0.6513,
+        "rmse": 0.144
+      },
+      "RandomForest": {
+        "r2": 0.6513,
+        "rmse": 0.144
+      },
+      "GradientBoosting": {
+        "r2": 0.6469,
+        "rmse": 0.1449
+      },
+      "HistGradientBoosting": {
+        "r2": 0.6506,
+        "rmse": 0.1441
+      }
+    },
+    {
+      "seed": 1,
+      "Bagging": {
+        "r2": 0.6377,
+        "rmse": 0.1362
+      },
+      "RandomForest": {
+        "r2": 0.6379,
+        "rmse": 0.1361
+      },
+      "GradientBoosting": {
+        "r2": 0.6281,
+        "rmse": 0.138
+      },
+      "HistGradientBoosting": {
+        "r2": 0.6385,
+        "rmse": 0.136
+      }
+    },
+    {
+      "seed": 7,
+      "Bagging": {
+        "r2": 0.6636,
+        "rmse": 0.1359
+      },
+      "RandomForest": {
+        "r2": 0.6628,
+        "rmse": 0.1361
+      },
+      "GradientBoosting": {
+        "r2": 0.6315,
+        "rmse": 0.1423
+      },
+      "HistGradientBoosting": {
+        "r2": 0.6426,
+        "rmse": 0.1401
+      }
+    },
+    {
+      "seed": 21,
+      "Bagging": {
+        "r2": 0.6683,
+        "rmse": 0.1279
+      },
+      "RandomForest": {
+        "r2": 0.6696,
+        "rmse": 0.1276
+      },
+      "GradientBoosting": {
+        "r2": 0.6596,
+        "rmse": 0.1295
+      },
+      "HistGradientBoosting": {
+        "r2": 0.6586,
+        "rmse": 0.1297
+      }
+    },
+    {
+      "seed": 42,
+      "Bagging": {
+        "r2": 0.6185,
+        "rmse": 0.1352
+      },
+      "RandomForest": {
+        "r2": 0.6179,
+        "rmse": 0.1353
+      },
+      "GradientBoosting": {
+        "r2": 0.6002,
+        "rmse": 0.1384
+      },
+      "HistGradientBoosting": {
+        "r2": 0.6108,
+        "rmse": 0.1365
+      }
+    }
+  ],
+  "summary": {
+    "Bagging": {
+      "mean_r2": 0.6479,
+      "std_r2": 0.0203,
+      "mean_rmse": 0.1358
+    },
+    "RandomForest": {
+      "mean_r2": 0.6479,
+      "std_r2": 0.0206,
+      "mean_rmse": 0.1358
+    },
+    "GradientBoosting": {
+      "mean_r2": 0.6333,
+      "std_r2": 0.0224,
+      "mean_rmse": 0.1386
+    },
+    "HistGradientBoosting": {
+      "mean_r2": 0.6402,
+      "std_r2": 0.0182,
+      "mean_rmse": 0.1373
+    }
+  }
+}

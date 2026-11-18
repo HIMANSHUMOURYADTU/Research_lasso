@@ -34,31 +34,33 @@ email@institution.edu}
 \maketitle
 
 \begin{abstract}
-We compare ordinary least squares, ridge regression, the lasso, and elastic net on the UCI Communities and Crime data.
+This study compares ordinary least squares, ridge regression, the lasso, and elastic net on the UCI Communities and Crime data, and then checks bagging and gradient boosting on the same splits.
 The file has 1{,}994 communities.
 After identifiers and mostly blank police-survey fields are removed, 100 predictors remain.
 The target is the 1995 violent-crime rate, already scaled to the interval from 0 to 1.
-On a held-out 20\% of communities (seed 42) the test $R^{2}$ values are 0.638, 0.640, 0.642, and 0.642.
-Root-mean-square error drops from 0.221, which is what we get by predicting the training mean, to about 0.131.
-Five further splits give mean test $R^{2}$ of 0.652, 0.654, 0.652, and 0.652.
-The gap between models is about 0.003.
+On a held-out 20\% of communities (seed 42) the linear test $R^{2}$ values are 0.638, 0.640, 0.642, and 0.642.
+Root-mean-square error drops from 0.221, the error of predicting the training mean, to about 0.131.
+Five splits give mean linear test $R^{2}$ of 0.652, 0.654, 0.652, and 0.652.
+The gap between those models is about 0.003.
 The gap between splits is about 0.03.
 Elastic net chooses an $\ell_1$ ratio of 0.1, keeps 81 coefficients, and does not win any of the five splits.
+Bagged trees, a random forest, and two gradient-boosting fits stay at or below that linear score.
+The mean test $R^{2}$ of the best tree model is 0.648, against 0.654 for ridge.
 The penalties still matter for reading the fit.
 Forty-nine predictor pairs correlate at 0.90 or above, and least squares puts large weights of opposite sign on some of those pairs.
-We treat every coefficient as a partial association.
-The study does not estimate what would happen if a community changed one of these columns.
+Every coefficient is a partial association.
+The design does not estimate what would happen if a community changed one of these columns.
 \end{abstract}
 
 \begin{IEEEkeywords}
-communities and crime, least squares, ridge regression, lasso, elastic net, multicollinearity
+communities and crime, least squares, ridge regression, lasso, elastic net, bagging, gradient boosting, multicollinearity
 \end{IEEEkeywords}
 
 \section{Introduction}
-We started from a simple question.
+The question is simple.
 If the census columns are left as they are, with the near-duplicate measures still in the table, does a penalty predict the violent-crime rate better than ordinary least squares?
 Ridge, the lasso, and elastic net are the usual answers when a design is collinear \cite{hoerl1970,tibshirani1996,zou2005}.
-We wanted the comparison on one public file, with the penalty chosen only from the training communities, and with more than one split.
+The comparison uses one public file, chooses the penalty only from the training communities, and repeats the split.
 
 The file is the UCI Communities and Crime extract \cite{redmond2002,uci2009}.
 It was released so that people could try attribute weighting on a real social table.
@@ -67,17 +69,20 @@ It combines 1995 counts of murder, rape, robbery, and assault with population, a
 
 Two recent papers fit a lasso on this collection and then discuss the nonzero coefficients as the factors behind the crime rate \cite{dai2024,wei2025}.
 A 2023 conference paper on linear, ridge, and lasso crime models reports an average predictive accuracy of 94\% \cite{david2023}.
-We cite that figure as theirs.
-It is not the holdout $R^{2}$ we compute here, which is about 0.64.
+That figure is theirs.
+It is not the holdout $R^{2}$ computed here, which is about 0.64.
 A model can be useful at that level and still leave a large share of the variance untouched.
 
-Our result is easy to state.
-All four models beat the mean by a wide margin, and they match each other closely enough that the split matters more than the penalty.
-What changes is the coefficient vector.
-Least squares uses near-copy columns to cancel one another.
-The penalties shrink those weights or set them to zero.
-That is a better description of the table.
-It is still a description of a fit, and we do not read it as a cause.
+The study tests three claims. The rest of the paper is the evidence.
+\begin{enumerate}
+\item The census columns predict the normalized violent-crime rate better than predicting the mean. Holdout $R^{2}$ is about 0.64, so a large share of the variance is still unexplained.
+\item Ridge, the lasso, and elastic net do not improve that prediction over least squares. Across five splits the gap is about 0.003. The penalty matters because least squares puts cancelling weights on near-copy columns, and the penalties shrink or drop those copies.
+\item Bagging and boosting do not raise the ceiling. On the same five splits, bagged trees and a random forest average test $R^{2}$ 0.648, and gradient boosting averages 0.633. Ridge averages 0.654.
+\end{enumerate}
+The third claim is a check, not a new algorithm.
+The tree models use standard settings, so a reader can see that boosting is not an answer to the tie among the linear models.
+Every quoted coefficient is a partial association in a fit.
+The design does not estimate what would happen if a community changed one column.
 
 \section{What other papers do with this file}
 Redmond and Baveja built the source table from the 1990 Census, the 1990 LEMAS police survey, and the 1995 Uniform Crime Reports \cite{redmond2002}.
@@ -88,22 +93,22 @@ Wei also uses the lasso, removes race-coded columns, and reports family structur
 Both are short, readable equations.
 Neither paper shows the unpenalized least-squares fit on the same rows, so a reader cannot see whether the penalty changed the predictions.
 Kim and Park compare penalties inside a two-part model for crime counts \cite{kim2024}.
-Their sample and their response are different from the single normalized rate we use, so we do not treat their error numbers as a baseline for ours.
+The sample and the response in that paper differ from the single normalized rate used here, so those error numbers are not a baseline for this study.
 
 David, Mbabazi, Nabende, and Marvin compare linear, ridge, and lasso models and state a predictive accuracy of 94\% \cite{david2023}.
-We do not try to recompute that percentage.
-We only avoid placing it next to our $R^{2}$ as if the two were the same quantity.
+This study does not recompute that percentage.
+The 94\% figure is not placed next to the $R^{2}$ below as if the two were the same quantity.
 
 \section{Data}
 The raw file has 1{,}994 rows and 128 fields.
-We drop \texttt{state}, \texttt{county}, \texttt{community}, \texttt{communityname}, and \texttt{fold}.
+The analysis drops \texttt{state}, \texttt{county}, \texttt{community}, \texttt{communityname}, and \texttt{fold}.
 State is a code, not a magnitude.
 The other four are identifiers or the cross-validation tag shipped with the archive.
 County and community are missing on about 59\% of rows.
 
 Twenty-two LEMAS fields are missing on 1{,}675 rows, about 84\%.
 The survey covered larger departments and a sample of smaller ones.
-We drop those fields.
+Those fields are dropped.
 Filling them in would mean inventing police-survey answers for most of the towns.
 \texttt{LemasPctOfficDrugUn} has no missing values, so it stays.
 One cell of \texttt{OtherPerCap} is missing.
@@ -114,16 +119,16 @@ The crime rate is skewed.
 The mean is 0.24, the median is 0.15, and the skew is 1.52.
 Errors in this paper are on the normalized scale.
 They are not crimes per 100{,}000.
-Values more than three standard deviations from the mean were already clipped to 0 or 1 in the release, so we cannot recover the original counts.
+Values more than three standard deviations from the mean were already clipped to 0 or 1 in the release, so the original counts cannot be recovered.
 
 On all 1{,}994 rows, the strongest correlations with the target are \texttt{PctKids2Par} at $-0.74$, \texttt{PctIlleg} at $+0.74$, \texttt{PctFam2Par} at $-0.71$, \texttt{racePctWhite} at $-0.68$, and \texttt{racepctblack} at $+0.63$.
 The predictors overlap with each other as well.
-We count 49 pairs with absolute correlation at least 0.90.
+Forty-nine pairs have absolute correlation at least 0.90.
 The variance-inflation factor is above 10 for 64 columns, above 30 for 37 columns, and the median is 21.6.
 \texttt{TotalPctDiv} is effectively a copy of the other divorce columns, and its VIF is infinite.
 
-\section{How we fit the models}
-We standardize the predictors after imputation.
+\section{Model fitting}
+The predictors are standardized after imputation.
 The scaler is fit on the training fold.
 Without that step the penalty would depend on which column happened to have a larger numeric range \cite{hoerl1970,tibshirani1996}.
 
@@ -131,17 +136,17 @@ Ordinary least squares has no penalty.
 Ridge adds a penalty on the sum of squared weights, and the intercept is left out of the penalty.
 The lasso uses the sum of absolute weights, which can hit exactly zero \cite{tibshirani1996}.
 Elastic net uses both \cite{zou2005}.
-In scikit-learn the objective we minimize is
+In scikit-learn the minimized objective is
 \begin{equation}
 \frac{1}{2n}\|y-Z\beta\|^{2}
 +\alpha\rho\|\beta\|_{1}
 +\frac{\alpha(1-\rho)}{2}\|\beta\|_{2}^{2},
 \end{equation}
 where $\rho$ is the $\ell_1$ ratio \cite{pedregosa2011}.
-We searched $\rho$ in $\{0.1, 0.5, 0.7, 0.9, 0.95\}$.
+The search covers $\rho$ in $\{0.1, 0.5, 0.7, 0.9, 0.95\}$.
 A value near 1 behaves like the lasso.
 A value near 0 behaves like ridge.
-We do not compare a ridge $\alpha$ with a lasso $\alpha$ as if they were the same number.
+A ridge $\alpha$ is not compared with a lasso $\alpha$ as if the two were the same number.
 The objectives scale the residual term differently.
 Each $\alpha$ is whatever 5-fold cross-validation picked for that objective.
 
@@ -150,11 +155,21 @@ The alpha grid is 40 values spaced from $10^{-4}$ to $10^{2}$ on a log scale.
 The test fold is used once, after the penalty is fixed.
 The baseline predicts the training mean for every test community.
 
-We then repeat the whole fit on seeds 0, 1, 7, 21, and 42.
+The whole fit is then repeated on seeds 0, 1, 7, 21, and 42.
 For those runs the alpha grid has 16 values from $10^{-3}$ to $10^{2}$.
 Elastic net still searches the same five ratios.
-We use the coarser grid only to see whether the ranking flips.
-We do not expect it to reprint the alpha from the main split.
+The coarser grid is used only to see whether the ranking flips.
+It is not expected to reprint the alpha from the main split.
+
+The tree models answer a different question: is the linear score low because the model is too rigid?
+Four tree models are fit on the same seeds, after the same training-fold median impute.
+The trees are not standardized, because a split on a column does not depend on the column's variance.
+Bagging draws 300 bootstrap samples and grows a tree on each, with at least two communities in every leaf \cite{breiman1996}.
+The random forest does the same and also picks a random subset of columns at each split \cite{breiman2001}.
+Gradient boosting adds 100 shallow trees in sequence, with learning rate 0.1 and depth 3, which are the library defaults \cite{friedman2001}.
+Histogram gradient boosting is the binned version of that idea, again at its library defaults \cite{pedregosa2011}.
+No large search over tree depth or learning rate was run.
+The point of this check is the ordinary version of bagging and boosting, not a leaderboard entry.
 
 \section{Prediction}
 Table~\ref{tab:primary} is the seed-42 result.
@@ -183,14 +198,25 @@ Elastic net & $\alpha=2.42\times 10^{-3}$, $\rho=0.10$ & 81 & 0.642 & 0.131 \\
 
 Test adjusted $R^{2}$ is 0.516, 0.519, 0.559, and 0.550 for least squares, ridge, the lasso, and elastic net.
 The lasso is charged for 75 columns and elastic net for 81, against 100 for the unpenalized fit, and the test set has only 399 rows.
-We report adjusted $R^{2}$ so the complexity is visible.
-We do not use it to pick a winner.
+Adjusted $R^{2}$ is reported so the complexity is visible.
+It is not used to pick a winner.
 
 The residual plots tell the same story for all four models.
 The clouds follow the diagonal in the middle of the range.
 Communities with a true rate near 1 are often predicted between about 0.5 and 0.8.
 Residuals are centered near zero and spread out as the prediction gets larger.
-We would not choose a model from those plots.
+Those plots do not select a model.
+
+Fig.~\ref{fig:linearpred} shows the same four linear fits as predicted rate against actual rate.
+The red line is exact prediction.
+All four clouds follow it through the middle of the range and fall below it for the highest-crime communities.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{07_predicted_vs_actual.png}
+\caption{Predicted against actual normalized crime rate for least squares, ridge, the lasso, and elastic net. Points on the red line would be exact.}
+\label{fig:linearpred}
+\end{figure}
 
 \begin{figure}[t]
 \centering
@@ -200,7 +226,7 @@ We would not choose a model from those plots.
 \end{figure}
 
 \subsection{Five splits}
-Table~\ref{tab:splits} is the check we cared about after seeing seed 42.
+Table~\ref{tab:splits} repeats the fit after seed 42.
 Ridge picks $\alpha=46.4$ on every seed.
 The lasso picks $\alpha=0.001$ and keeps between 47 and 55 features.
 On seed 42 that coarser lasso still has test $R^{2}$ 0.6422, next to 0.6421 on the fine grid, so the grid change is not driving the score.
@@ -212,9 +238,103 @@ The means are 0.6515, 0.6541, 0.6524, and 0.6523.
 Ridge is ahead by about 0.003.
 The standard deviation across seeds is about 0.03, roughly ten times the gap.
 Mean test RMSE is 0.1351, 0.1346, 0.1349, and 0.1349.
-If we had published only seed 42, we would have said the lasso won.
-The average says ridge.
-We do not think either sentence is a finding about accuracy.
+Publishing only seed 42 would have named the lasso the winner.
+The average names ridge.
+Neither sentence is a finding about accuracy.
+Fig.~\ref{fig:means} draws the five-split means for the linear models and the tree models on one axis.
+
+\section{Bagging and boosting}
+Table~\ref{tab:all} is every model on the main split, in one place.
+The four linear rows match Table~\ref{tab:primary}.
+The four tree rows are the new check.
+All eight beat the mean baseline of RMSE 0.221.
+The linear RMSE values sit at 0.131.
+The tree RMSE values sit at 0.135 to 0.138.
+
+\begin{table}[t]
+\caption{Every model on seed 42. Tree models are median-imputed and not standardized. RMSE is on the normalized crime rate.}
+\label{tab:all}
+\centering
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Model & Test $R^{2}$ & RMSE \\
+\midrule
+Mean baseline & $-0.022$ & 0.221 \\
+Least squares & 0.638 & 0.132 \\
+Ridge & 0.640 & 0.131 \\
+Lasso & 0.642 & 0.131 \\
+Elastic net & 0.642 & 0.131 \\
+Bagging & 0.619 & 0.135 \\
+Random forest & 0.618 & 0.135 \\
+Gradient boosting & 0.600 & 0.138 \\
+Histogram boosting & 0.611 & 0.137 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:trees} puts the tree models on the same five seeds.
+On seed 42, where the linear models score 0.638 to 0.642, bagging scores 0.619, the random forest 0.618, histogram gradient boosting 0.611, and gradient boosting 0.600.
+That one split makes the trees look clearly worse.
+The other seeds close most of the gap.
+Mean test $R^{2}$ is 0.648 for bagging, 0.648 for the random forest, 0.640 for histogram gradient boosting, and 0.633 for gradient boosting.
+Ridge's mean on the same seeds is 0.654.
+The best tree average sits about 0.006 under the best linear average.
+Gradient boosting is the weak one of the four, by about 0.02 against ridge.
+The split-to-split standard deviation for the trees is about 0.02, so a 0.006 gap is small, and a 0.02 gap is about one standard deviation.
+Neither gap is a reason to replace the linear fit with a forest, and neither gap rescues a claim that one linear penalty is the accurate one.
+
+Bagging and the random forest land on almost the same number on every seed.
+The extra random column subset inside the forest is not what moves the error on this file.
+Both are ensembles of trees, and both still have to split columns that are near copies of each other.
+They can represent a bend that a straight line cannot.
+On these communities, that flexibility does not pay for itself on held-out squared error.
+
+\begin{table}[t]
+\caption{Test $R^{2}$ for bagging and boosting on the same five splits. Trees use a training-fold median impute and are not standardized.}
+\label{tab:trees}
+\centering
+\scriptsize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Seed & Bagging & Forest & Boosting & Hist.\ boosting \\
+\midrule
+0  & 0.6513 & 0.6513 & 0.6469 & 0.6506 \\
+1  & 0.6377 & 0.6379 & 0.6281 & 0.6385 \\
+7  & 0.6636 & 0.6628 & 0.6315 & 0.6426 \\
+21 & 0.6683 & 0.6696 & 0.6596 & 0.6586 \\
+42 & 0.6185 & 0.6179 & 0.6002 & 0.6108 \\
+\midrule
+Mean & 0.6479 & 0.6479 & 0.6333 & 0.6402 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Seed-42 RMSE for the four tree models is 0.135, 0.135, 0.138, and 0.137, against about 0.131 for the linear models.
+Mean RMSE across the five seeds is 0.136 for bagging and the forest, 0.139 for gradient boosting, and 0.137 for histogram gradient boosting.
+The linear mean RMSE is 0.135 to 0.135.
+The trees do not cut the error the linear models left on the table.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{19_all_models_holdout.png}
+\caption{Seed 42, every fitted model. The $R^{2}$ axis runs from 0 to 1. The linear models sit together, and the tree models sit slightly lower.}
+\label{fig:all}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{20_tree_predicted_vs_actual.png}
+\caption{Bagging, random forest, gradient boosting, and histogram gradient boosting on the seed-42 test set. The shape matches the linear fits in Fig.~\ref{fig:linearpred}: a tight cloud at low crime rates, and under-prediction in the right tail.}
+\label{fig:treepred}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{21_five_split_means.png}
+\caption{Mean test $R^{2}$ over seeds 0, 1, 7, 21, and 42. The axis starts at 0.60. Ridge is the highest bar. Gradient boosting is the lowest.}
+\label{fig:means}
+\end{figure}
 
 \begin{table}[t]
 \caption{Test $R^{2}$ when the split changes and the penalty is chosen again on that training set.}
@@ -275,13 +395,13 @@ Ridge moves the weight to about zero.
 The lasso and elastic net drop the column.
 \texttt{MalePctDivorce} stays positive under all four fits, which lines up with the raw correlation.
 
-We are willing to repeat the associations that show up both in the correlations and in the penalized fits.
+The associations that show up both in the correlations and in the penalized fits are the ones stated here.
 Communities with more children in two-parent households, and communities with more households receiving investment income, have lower predicted rates in this file.
 Communities with a higher share of births to unmarried parents, a higher Black population share, and a higher male divorce rate have higher predicted rates.
 Poverty sits in the same cluster.
 \texttt{PctPopUnderPov} correlates at $+0.52$ with the target, and the lasso weight is slightly negative once the overlapping columns are included.
-We read that as shared variance among the columns.
-We would not write a sentence that says poverty lowers crime.
+That pattern is shared variance among the columns.
+It is not evidence that poverty lowers crime.
 
 \begin{figure}[t]
 \centering
@@ -290,8 +410,8 @@ We would not write a sentence that says poverty lowers crime.
 \label{fig:coef}
 \end{figure}
 
-\section{What we would and would not conclude}
-We expected elastic net to land between ridge and the lasso, because that is how the method is usually described.
+\section{Limits of the conclusion}
+Elastic net was expected to land between ridge and the lasso, because that is how the method is usually described.
 On this training set the cross-validation choice is $\rho=0.1$ and 81 nonzero weights.
 The fit is a ridge-like penalty that also deletes some copies.
 Calling it a third predictive model, without giving $\rho$, would oversell it.
@@ -300,20 +420,21 @@ Across the five splits it never has the lowest error.
 The same restraint applies when a short lasso equation is offered as the structural account of violent crime \cite{dai2024,wei2025}.
 The signs that match the raw correlations are worth showing.
 They are partial associations after the other columns in the equation are held fixed.
-They are not the change in crime we would see if a city changed one column.
+They are not the change in crime that would follow if a city changed one column.
 Race shares are easy to over-read here.
-They move with poverty, family structure, and housing, and our design does not separate those groups of columns.
+They move with poverty, family structure, and housing, and this design does not separate those groups of columns.
 Wei drops the race columns in order to look at the structural ones \cite{wei2025}.
 That is a different question.
-We kept them so the collinearity would stay visible.
+The race columns were kept so the collinearity would stay visible.
 
 The years also limit the claim.
 The crime rate is from 1995 and most predictors are from the 1990 census.
-We are not forecasting a later year, another country, or a patrol plan.
-There are no interaction terms.
-The wide residuals at high predicted crime are what that choice costs.
-A nonlinear model might shrink the tail error.
-We did not fit one, and a lower tail error would still not turn a coefficient into a cause.
+The result is not a forecast for a later year, another country, or a patrol plan.
+The linear models have no interaction terms, and the residuals still fan out at high predicted crime.
+Nonlinear models were fit, in the form of bagged trees and gradient boosting.
+They did not remove that gap.
+A long search over depth and learning rate might move their score by a little.
+A tree split is still not the effect of changing a column in a city.
 The dropped LEMAS columns might matter for the departments that answered the survey.
 A model for all 1{,}994 communities cannot use a field that is blank for about five communities out of six.
 
@@ -327,12 +448,14 @@ Least squares puts large cancelling weights on near-duplicate columns, including
 Ridge shrinks those weights.
 The lasso keeps 75 columns on the main split.
 Elastic net, with $\ell_1$ ratio 0.1, keeps 81 and drops the same unstable copies.
-We would cite this paper for that distinction, and not for a claim that one penalty forecasts crime.
+Bagging, a random forest, and gradient boosting, on the same splits, do not beat that linear error.
+The citable claim is those three results together: the columns predict, the penalty does not buy accuracy, and a default tree ensemble does not buy it either.
 
 \section*{Acknowledgment}
 The numbers come from the public UCI extract \cite{uci2009}.
-We did not collect new community data.
+No new community data were collected.
 A reader who reruns the comparison should use seed 42 for the main split, a 40-point log grid from $10^{-4}$ to $10^{2}$ for the primary penalties, and seeds 0, 1, 7, 21, and 42 with a 16-point grid for the repeated splits.
+\texttt{ensemble\_comparison.py} refits bagging, the random forest, and both boosting models on those same seeds.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

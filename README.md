@@ -11,7 +11,13 @@ Census columns from 1990 predict the 1995 violent-crime rate of 1,994 U.S. commu
 | Main split | 80/20, seed 42, 1,595 train / 399 test |
 | Result | Test R² 0.638, 0.640, 0.642, 0.642. Five-split gap about 0.003, split-to-split spread about 0.03 |
 
-The short version: all four models beat predicting the mean by a wide margin. None of the penalties is a meaningful accuracy upgrade on least squares. On the main split, elastic net chose an l1 ratio of 0.10, so it is mostly a ridge penalty, and it still drops 19 of the 100 features. Coefficients are associations. They are not effects of changing poverty, family structure, or racial composition.
+The short version: all four linear models beat predicting the mean by a wide margin. None of the penalties is a meaningful accuracy upgrade on least squares. Bagged trees and boosting, on the same five splits, do not beat that linear score either. On the main split, elastic net chose an l1 ratio of 0.10, so it is mostly a ridge penalty, and it still drops 19 of the 100 features. Coefficients are associations. They are not effects of changing poverty, family structure, or racial composition.
+
+What the study is testing:
+
+1. The census columns predict the normalized crime rate better than the mean. Test R² is about 0.64.
+2. Ridge, the lasso, and elastic net do not improve that prediction. Across five splits the gap is about 0.003, and the split-to-split spread is about 0.03. The penalties matter because least squares puts opposite signs on near-copy columns.
+3. Bagging and boosting do not raise the ceiling. Mean test R² is 0.648 for bagging and a random forest, 0.640 for histogram gradient boosting, and 0.633 for gradient boosting, against 0.654 for ridge.
 
 ## Data
 
@@ -65,7 +71,22 @@ Across five splits, with the penalty retuned on each training set. Elastic net s
 
 Mean test RMSE is 0.1351, 0.1346, 0.1349, and 0.1349 for linear, ridge, lasso, and elastic net. The average R² gap is about 0.003. The standard deviation from one split to another is about 0.03, ten times larger. Ridge has the best average and wins two seeds. Lasso wins two, including the original seed-42 split. Least squares wins seed 0. Elastic net wins none. On four of the five seeds it selects l1 ratio 0.1; on seed 7 it selects 0.5.
 
-So if the goal is prediction alone, the four models are tied for practical purposes. All of them explain a bit more than 60% of the holdout variance. None of them is a large upgrade on the others.
+## Bagging and boosting
+
+We also fit bagged trees, a random forest, gradient boosting, and histogram gradient boosting on the same five seeds. The trees are median-imputed on the training fold and are not standardized. Bagging and the forest use 300 trees. Boosting uses the library defaults (100 trees, learning rate 0.1, depth 3). This is the ordinary version of those methods, not a large parameter search.
+
+| Seed | Bagging | Random forest | Gradient boosting | Hist. boosting |
+| --- | --- | --- | --- | --- |
+| 0 | 0.651 | 0.651 | 0.647 | 0.651 |
+| 1 | 0.638 | 0.638 | 0.628 | 0.639 |
+| 7 | 0.664 | 0.663 | 0.632 | 0.643 |
+| 21 | 0.668 | 0.670 | 0.660 | 0.659 |
+| 42 | 0.619 | 0.618 | 0.600 | 0.611 |
+| Mean | 0.648 | 0.648 | 0.633 | 0.640 |
+
+Ridge's mean on these seeds is 0.654. Seed 42 by itself makes the trees look worse than they are. Across five splits they still do not beat the linear models. `ensemble_comparison.py` writes `ensemble_results.json`.
+
+So if the goal is prediction alone, the four linear models are tied for practical purposes, and a default tree ensemble is not an upgrade on them. All of the linear models explain a bit more than 60% of the holdout variance. None of them is a large upgrade on the others.
 
 Where the penalties are actually better:
 
@@ -128,6 +149,9 @@ The canvas next to the analysis also has step buttons (Start, 10, 25, 100, 1,000
 | `figures/07_predicted_vs_actual.png` | Holdout predictions against the diagonal |
 | `figures/08_residuals.png` | Residual scatter and histograms |
 | `figures/09_coefficients.png` | Least squares versus ridge, lasso, and elastic net |
+| `figures/19_all_models_holdout.png` | Every model, seed-42 R² and RMSE |
+| `figures/20_tree_predicted_vs_actual.png` | Bagging, forest, and both boosting fits against the diagonal |
+| `figures/21_five_split_means.png` | Mean test R² of all eight models across five splits |
 | `figures/10_gradient_descent_loss.png` | Slow versus chosen learning rate |
 | `figures/11_gradient_descent_weights_vs_loss.png` | Loss flattens while weights keep moving |
 | `figures/12_gradient_descent_coefficient_paths.png` | All 100 weights leaving zero |
@@ -152,6 +176,8 @@ From this folder, with Python 3.11 and the installed scientific stack (`numpy`, 
 python crime_regression.py
 python plot_analysis.py
 python animate_fit.py
+python ensemble_comparison.py
+python plot_all_models.py
 python build_report.py
 ```
 
@@ -166,6 +192,8 @@ python build_report.py
 | `crime_regression.py` | Cleaning, EDA summaries, the four models |
 | `plot_analysis.py` | Still figures and full-model gradient descent |
 | `animate_fit.py` | Line-fitting animation and the five-split check |
+| `ensemble_comparison.py` | Bagging, random forest, and boosting on the same five seeds |
+| `plot_all_models.py` | Holdout bars, tree predictions, and the five-split chart for every model |
 | `build_report.py` | Builds the 21-page PDF from the JSON and figures |
 | `analysis_results.json` | Metrics, correlations, coefficients |
 | `figures/` | Plots, the gif, and `comparison.json` |
