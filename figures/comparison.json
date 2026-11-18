@@ -1,0 +1,177 @@
+{
+  "repeated_splits": {
+    "seeds": [
+      0,
+      1,
+      7,
+      21,
+      42
+    ],
+    "splits": [
+      {
+        "seed": 0,
+        "Linear": {
+          "r2": 0.6588,
+          "rmse": 0.1424
+        },
+        "Ridge": {
+          "r2": 0.6583,
+          "rmse": 0.1425,
+          "alpha": 46.415888
+        },
+        "Lasso": {
+          "r2": 0.6512,
+          "rmse": 0.144,
+          "alpha": 0.001,
+          "nonzero": 47
+        },
+        "ElasticNet": {
+          "r2": 0.6501,
+          "rmse": 0.1442,
+          "alpha": 0.01,
+          "l1_ratio": 0.1,
+          "nonzero": 47
+        }
+      },
+      {
+        "seed": 1,
+        "Linear": {
+          "r2": 0.6091,
+          "rmse": 0.1414
+        },
+        "Ridge": {
+          "r2": 0.611,
+          "rmse": 0.1411,
+          "alpha": 46.415888
+        },
+        "Lasso": {
+          "r2": 0.6125,
+          "rmse": 0.1408,
+          "alpha": 0.001,
+          "nonzero": 55
+        },
+        "ElasticNet": {
+          "r2": 0.6113,
+          "rmse": 0.141,
+          "alpha": 0.004642,
+          "l1_ratio": 0.1,
+          "nonzero": 74
+        }
+      },
+      {
+        "seed": 7,
+        "Linear": {
+          "r2": 0.6749,
+          "rmse": 0.1336
+        },
+        "Ridge": {
+          "r2": 0.6806,
+          "rmse": 0.1325,
+          "alpha": 46.415888
+        },
+        "Lasso": {
+          "r2": 0.6789,
+          "rmse": 0.1328,
+          "alpha": 0.001,
+          "nonzero": 52
+        },
+        "ElasticNet": {
+          "r2": 0.678,
+          "rmse": 0.133,
+          "alpha": 0.001,
+          "l1_ratio": 0.5,
+          "nonzero": 71
+        }
+      },
+      {
+        "seed": 21,
+        "Linear": {
+          "r2": 0.6768,
+          "rmse": 0.1262
+        },
+        "Ridge": {
+          "r2": 0.6807,
+          "rmse": 0.1254,
+          "alpha": 46.415888
+        },
+        "Lasso": {
+          "r2": 0.6771,
+          "rmse": 0.1261,
+          "alpha": 0.001,
+          "nonzero": 48
+        },
+        "ElasticNet": {
+          "r2": 0.6804,
+          "rmse": 0.1255,
+          "alpha": 0.004642,
+          "l1_ratio": 0.1,
+          "nonzero": 70
+        }
+      },
+      {
+        "seed": 42,
+        "Linear": {
+          "r2": 0.6379,
+          "rmse": 0.1317
+        },
+        "Ridge": {
+          "r2": 0.64,
+          "rmse": 0.1313,
+          "alpha": 46.415888
+        },
+        "Lasso": {
+          "r2": 0.6422,
+          "rmse": 0.1309,
+          "alpha": 0.001,
+          "nonzero": 53
+        },
+        "ElasticNet": {
+          "r2": 0.6417,
+          "rmse": 0.131,
+          "alpha": 0.002154,
+          "l1_ratio": 0.1,
+          "nonzero": 82
+        }
+      }
+    ],
+    "summary": {
+      "Linear": {
+        "mean_r2": 0.6515,
+        "std_r2": 0.0284,
+        "mean_rmse": 0.1351,
+        "wins": 1
+      },
+      "Ridge": {
+        "mean_r2": 0.6541,
+        "std_r2": 0.0295,
+        "mean_rmse": 0.1346,
+        "wins": 2
+      },
+      "Lasso": {
+        "mean_r2": 0.6524,
+        "std_r2": 0.0274,
+        "mean_rmse": 0.1349,
+        "wins": 2
+      },
+      "ElasticNet": {
+        "mean_r2": 0.6523,
+        "std_r2": 0.0285,
+        "mean_rmse": 0.1349,
+        "wins": 0
+      }
+    }
+  },
+  "animation": {
+    "gif": "D:\\communities+and+crime\\figures\\15_line_fitting.gif",
+    "frames": 39,
+    "learning_rate": 0.3964,
+    "start_slope": 0.9,
+    "end_slope": -0.8292,
+    "end_intercept": 0.7524,
+    "ols_slope": -0.8441,
+    "ols_intercept": 0.7618,
+    "start_mse": 0.283,
+    "end_mse": 0.0251,
+    "steps": 188
+  }
+}

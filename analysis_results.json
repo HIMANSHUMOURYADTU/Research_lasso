@@ -1,0 +1,1287 @@
+{
+  "dataset": {
+    "rows": 1994,
+    "columns": 128,
+    "non_predictive_dropped": [
+      "state",
+      "county",
+      "community",
+      "communityname",
+      "fold"
+    ],
+    "high_missing_dropped": [
+      "LemasSwornFT",
+      "LemasSwFTPerPop",
+      "LemasSwFTFieldOps",
+      "LemasSwFTFieldPerPop",
+      "LemasTotalReq",
+      "LemasTotReqPerPop",
+      "PolicReqPerOffic",
+      "PolicPerPop",
+      "RacialMatchCommPol",
+      "PctPolicWhite",
+      "PctPolicBlack",
+      "PctPolicHisp",
+      "PctPolicAsian",
+      "PctPolicMinor",
+      "OfficAssgnDrugUnits",
+      "NumKindsDrugsSeiz",
+      "PolicAveOTWorked",
+      "PolicCars",
+      "PolicOperBudg",
+      "LemasPctPolicOnPatr",
+      "LemasGangUnitDeploy",
+      "PolicBudgPerPop"
+    ],
+    "n_high_missing_dropped": 22,
+    "n_features_used": 100,
+    "features_used": [
+      "population",
+      "householdsize",
+      "racepctblack",
+      "racePctWhite",
+      "racePctAsian",
+      "racePctHisp",
+      "agePct12t21",
+      "agePct12t29",
+      "agePct16t24",
+      "agePct65up",
+      "numbUrban",
+      "pctUrban",
+      "medIncome",
+      "pctWWage",
+      "pctWFarmSelf",
+      "pctWInvInc",
+      "pctWSocSec",
+      "pctWPubAsst",
+      "pctWRetire",
+      "medFamInc",
+      "perCapInc",
+      "whitePerCap",
+      "blackPerCap",
+      "indianPerCap",
+      "AsianPerCap",
+      "OtherPerCap",
+      "HispPerCap",
+      "NumUnderPov",
+      "PctPopUnderPov",
+      "PctLess9thGrade",
+      "PctNotHSGrad",
+      "PctBSorMore",
+      "PctUnemployed",
+      "PctEmploy",
+      "PctEmplManu",
+      "PctEmplProfServ",
+      "PctOccupManu",
+      "PctOccupMgmtProf",
+      "MalePctDivorce",
+      "MalePctNevMarr",
+      "FemalePctDiv",
+      "TotalPctDiv",
+      "PersPerFam",
+      "PctFam2Par",
+      "PctKids2Par",
+      "PctYoungKids2Par",
+      "PctTeen2Par",
+      "PctWorkMomYoungKids",
+      "PctWorkMom",
+      "NumIlleg",
+      "PctIlleg",
+      "NumImmig",
+      "PctImmigRecent",
+      "PctImmigRec5",
+      "PctImmigRec8",
+      "PctImmigRec10",
+      "PctRecentImmig",
+      "PctRecImmig5",
+      "PctRecImmig8",
+      "PctRecImmig10",
+      "PctSpeakEnglOnly",
+      "PctNotSpeakEnglWell",
+      "PctLargHouseFam",
+      "PctLargHouseOccup",
+      "PersPerOccupHous",
+      "PersPerOwnOccHous",
+      "PersPerRentOccHous",
+      "PctPersOwnOccup",
+      "PctPersDenseHous",
+      "PctHousLess3BR",
+      "MedNumBR",
+      "HousVacant",
+      "PctHousOccup",
+      "PctHousOwnOcc",
+      "PctVacantBoarded",
+      "PctVacMore6Mos",
+      "MedYrHousBuilt",
+      "PctHousNoPhone",
+      "PctWOFullPlumb",
+      "OwnOccLowQuart",
+      "OwnOccMedVal",
+      "OwnOccHiQuart",
+      "RentLowQ",
+      "RentMedian",
+      "RentHighQ",
+      "MedRent",
+      "MedRentPctHousInc",
+      "MedOwnCostPctInc",
+      "MedOwnCostPctIncNoMtg",
+      "NumInShelters",
+      "NumStreet",
+      "PctForeignBorn",
+      "PctBornSameState",
+      "PctSameHouse85",
+      "PctSameCity85",
+      "PctSameState85",
+      "LandArea",
+      "PopDens",
+      "PctUsePubTrans",
+      "LemasPctOfficDrugUn"
+    ],
+    "missing_drop_threshold_pct": 50,
+    "remaining_missing_cells": 1,
+    "train_size": 1595,
+    "test_size": 399,
+    "test_fraction": 0.2,
+    "random_state": 42
+  },
+  "missing": [
+    {
+      "feature": "PctPolicWhite",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PctPolicBlack",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasGangUnitDeploy",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasPctPolicOnPatr",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PolicOperBudg",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PolicCars",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PolicAveOTWorked",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "NumKindsDrugsSeiz",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "OfficAssgnDrugUnits",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PctPolicMinor",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PctPolicAsian",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PctPolicHisp",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PolicBudgPerPop",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "RacialMatchCommPol",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PolicPerPop",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "PolicReqPerOffic",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasTotReqPerPop",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasTotalReq",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasSwFTFieldPerPop",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasSwFTFieldOps",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasSwFTPerPop",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "LemasSwornFT",
+      "missing": 1675,
+      "pct": 84.0
+    },
+    {
+      "feature": "community",
+      "missing": 1177,
+      "pct": 59.03
+    },
+    {
+      "feature": "county",
+      "missing": 1174,
+      "pct": 58.88
+    },
+    {
+      "feature": "OtherPerCap",
+      "missing": 1,
+      "pct": 0.05
+    }
+  ],
+  "target": {
+    "mean": 0.238,
+    "median": 0.15,
+    "std": 0.233,
+    "min": 0.0,
+    "max": 1.0,
+    "skew": 1.5226,
+    "pct_above_0_5": 13.89,
+    "pct_at_least_0_9": 2.86
+  },
+  "target_histogram": {
+    "labels": [
+      "0.00\u20130.08",
+      "0.08\u20130.17",
+      "0.17\u20130.25",
+      "0.25\u20130.33",
+      "0.33\u20130.42",
+      "0.42\u20130.50",
+      "0.50\u20130.58",
+      "0.58\u20130.67",
+      "0.67\u20130.75",
+      "0.75\u20130.83",
+      "0.83\u20130.92",
+      "0.92\u20131.00"
+    ],
+    "counts": [
+      610,
+      432,
+      273,
+      192,
+      129,
+      69,
+      86,
+      59,
+      40,
+      30,
+      22,
+      52
+    ]
+  },
+  "top_correlations": [
+    {
+      "feature": "PctKids2Par",
+      "correlation": -0.7384
+    },
+    {
+      "feature": "PctIlleg",
+      "correlation": 0.738
+    },
+    {
+      "feature": "PctFam2Par",
+      "correlation": -0.7067
+    },
+    {
+      "feature": "racePctWhite",
+      "correlation": -0.6848
+    },
+    {
+      "feature": "PctYoungKids2Par",
+      "correlation": -0.6661
+    },
+    {
+      "feature": "PctTeen2Par",
+      "correlation": -0.6616
+    },
+    {
+      "feature": "racepctblack",
+      "correlation": 0.6313
+    },
+    {
+      "feature": "pctWInvInc",
+      "correlation": -0.5763
+    },
+    {
+      "feature": "pctWPubAsst",
+      "correlation": 0.5747
+    },
+    {
+      "feature": "FemalePctDiv",
+      "correlation": 0.556
+    },
+    {
+      "feature": "TotalPctDiv",
+      "correlation": 0.5528
+    },
+    {
+      "feature": "PctPersOwnOccup",
+      "correlation": -0.5255
+    },
+    {
+      "feature": "MalePctDivorce",
+      "correlation": 0.5254
+    },
+    {
+      "feature": "PctPopUnderPov",
+      "correlation": 0.5219
+    },
+    {
+      "feature": "PctUnemployed",
+      "correlation": 0.5042
+    }
+  ],
+  "collinear_pairs": [
+    {
+      "a": "PctRecImmig8",
+      "b": "PctRecImmig10",
+      "abs_correlation": 0.9955
+    },
+    {
+      "a": "OwnOccLowQuart",
+      "b": "OwnOccMedVal",
+      "abs_correlation": 0.9945
+    },
+    {
+      "a": "PctRecImmig5",
+      "b": "PctRecImmig8",
+      "abs_correlation": 0.9934
+    },
+    {
+      "a": "population",
+      "b": "numbUrban",
+      "abs_correlation": 0.9931
+    },
+    {
+      "a": "OwnOccMedVal",
+      "b": "OwnOccHiQuart",
+      "abs_correlation": 0.9913
+    },
+    {
+      "a": "PctRecentImmig",
+      "b": "PctRecImmig5",
+      "abs_correlation": 0.989
+    },
+    {
+      "a": "RentMedian",
+      "b": "MedRent",
+      "abs_correlation": 0.9886
+    },
+    {
+      "a": "PctRecImmig5",
+      "b": "PctRecImmig10",
+      "abs_correlation": 0.9856
+    },
+    {
+      "a": "PctFam2Par",
+      "b": "PctKids2Par",
+      "abs_correlation": 0.9854
+    },
+    {
+      "a": "PctLargHouseFam",
+      "b": "PctLargHouseOccup",
+      "abs_correlation": 0.9844
+    },
+    {
+      "a": "FemalePctDiv",
+      "b": "TotalPctDiv",
+      "abs_correlation": 0.9832
+    },
+    {
+      "a": "PctPersOwnOccup",
+      "b": "PctHousOwnOcc",
+      "abs_correlation": 0.9819
+    }
+  ],
+  "n_collinear_pairs_ge_0_90": 49,
+  "vif": {
+    "n_features": 100,
+    "n_vif_over_10": 64,
+    "n_vif_over_30": 37,
+    "n_infinite": 1,
+    "median_vif": 21.58,
+    "max_finite_vif": 577.75
+  },
+  "baseline": {
+    "r2": -0.0217,
+    "adj_r2": -0.0217,
+    "rmse": 0.2212,
+    "mae": 0.1788,
+    "n": 399,
+    "n_features_in_adj": 0,
+    "name": "Mean baseline"
+  },
+  "models": {
+    "Linear": {
+      "name": "Linear",
+      "train": {
+        "r2": 0.7008,
+        "adj_r2": 0.6808,
+        "rmse": 0.129,
+        "mae": 0.0912,
+        "n": 1595,
+        "n_features_in_adj": 100
+      },
+      "test": {
+        "r2": 0.6379,
+        "adj_r2": 0.5164,
+        "rmse": 0.1317,
+        "mae": 0.0942,
+        "n": 399,
+        "n_features_in_adj": 100
+      },
+      "n_nonzero": 100,
+      "intercept": 0.2444,
+      "top_coefficients": [
+        {
+          "feature": "PctRecImmig8",
+          "coefficient": 0.1281,
+          "abs_coefficient": 0.1281
+        },
+        {
+          "feature": "TotalPctDiv",
+          "coefficient": -0.1275,
+          "abs_coefficient": 0.1275
+        },
+        {
+          "feature": "PctPersOwnOccup",
+          "coefficient": -0.1233,
+          "abs_coefficient": 0.1233
+        },
+        {
+          "feature": "PersPerOccupHous",
+          "coefficient": 0.111,
+          "abs_coefficient": 0.111
+        },
+        {
+          "feature": "MalePctDivorce",
+          "coefficient": 0.0928,
+          "abs_coefficient": 0.0928
+        },
+        {
+          "feature": "PctHousOwnOcc",
+          "coefficient": 0.0873,
+          "abs_coefficient": 0.0873
+        },
+        {
+          "feature": "PctRecImmig10",
+          "coefficient": -0.0795,
+          "abs_coefficient": 0.0795
+        },
+        {
+          "feature": "MedRent",
+          "coefficient": 0.0749,
+          "abs_coefficient": 0.0749
+        },
+        {
+          "feature": "whitePerCap",
+          "coefficient": -0.0667,
+          "abs_coefficient": 0.0667
+        },
+        {
+          "feature": "PctLargHouseOccup",
+          "coefficient": -0.0644,
+          "abs_coefficient": 0.0644
+        },
+        {
+          "feature": "RentLowQ",
+          "coefficient": -0.0577,
+          "abs_coefficient": 0.0577
+        },
+        {
+          "feature": "medFamInc",
+          "coefficient": 0.0555,
+          "abs_coefficient": 0.0555
+        }
+      ],
+      "calibration": {
+        "labels": [
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10"
+        ],
+        "mean_predicted": [
+          0.0005,
+          0.0426,
+          0.0798,
+          0.1058,
+          0.1407,
+          0.1859,
+          0.2403,
+          0.3093,
+          0.4161,
+          0.6019
+        ],
+        "mean_actual": [
+          0.0537,
+          0.0643,
+          0.082,
+          0.0815,
+          0.1293,
+          0.1531,
+          0.223,
+          0.2782,
+          0.434,
+          0.6213
+        ],
+        "mean_residual": [
+          0.0533,
+          0.0216,
+          0.0022,
+          -0.0243,
+          -0.0115,
+          -0.0328,
+          -0.0173,
+          -0.031,
+          0.0179,
+          0.0193
+        ]
+      }
+    },
+    "Ridge": {
+      "name": "Ridge",
+      "train": {
+        "r2": 0.6946,
+        "adj_r2": 0.6741,
+        "rmse": 0.1304,
+        "mae": 0.0911,
+        "n": 1595,
+        "n_features_in_adj": 100
+      },
+      "test": {
+        "r2": 0.6399,
+        "adj_r2": 0.519,
+        "rmse": 0.1313,
+        "mae": 0.0928,
+        "n": 399,
+        "n_features_in_adj": 100
+      },
+      "n_nonzero": 100,
+      "intercept": 0.2444,
+      "top_coefficients": [
+        {
+          "feature": "racepctblack",
+          "coefficient": 0.0409,
+          "abs_coefficient": 0.0409
+        },
+        {
+          "feature": "RentLowQ",
+          "coefficient": -0.0387,
+          "abs_coefficient": 0.0387
+        },
+        {
+          "feature": "PctIlleg",
+          "coefficient": 0.0375,
+          "abs_coefficient": 0.0375
+        },
+        {
+          "feature": "pctWInvInc",
+          "coefficient": -0.0305,
+          "abs_coefficient": 0.0305
+        },
+        {
+          "feature": "MedRent",
+          "coefficient": 0.0291,
+          "abs_coefficient": 0.0291
+        },
+        {
+          "feature": "PersPerOccupHous",
+          "coefficient": 0.0285,
+          "abs_coefficient": 0.0285
+        },
+        {
+          "feature": "MalePctDivorce",
+          "coefficient": 0.0277,
+          "abs_coefficient": 0.0277
+        },
+        {
+          "feature": "PctPersDenseHous",
+          "coefficient": 0.0268,
+          "abs_coefficient": 0.0268
+        },
+        {
+          "feature": "PctPopUnderPov",
+          "coefficient": -0.0261,
+          "abs_coefficient": 0.0261
+        },
+        {
+          "feature": "PctWorkMom",
+          "coefficient": -0.025,
+          "abs_coefficient": 0.025
+        },
+        {
+          "feature": "HousVacant",
+          "coefficient": 0.0249,
+          "abs_coefficient": 0.0249
+        },
+        {
+          "feature": "agePct12t29",
+          "coefficient": -0.0242,
+          "abs_coefficient": 0.0242
+        }
+      ],
+      "calibration": {
+        "labels": [
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10"
+        ],
+        "mean_predicted": [
+          0.0014,
+          0.0369,
+          0.0768,
+          0.1073,
+          0.1413,
+          0.1859,
+          0.2392,
+          0.3104,
+          0.4096,
+          0.5972
+        ],
+        "mean_actual": [
+          0.0578,
+          0.0537,
+          0.082,
+          0.0777,
+          0.1333,
+          0.1433,
+          0.242,
+          0.286,
+          0.416,
+          0.6282
+        ],
+        "mean_residual": [
+          0.0564,
+          0.0169,
+          0.0052,
+          -0.0295,
+          -0.008,
+          -0.0425,
+          0.0028,
+          -0.0244,
+          0.0064,
+          0.031
+        ]
+      },
+      "alpha": 34.551073
+    },
+    "Lasso": {
+      "name": "Lasso",
+      "train": {
+        "r2": 0.6941,
+        "adj_r2": 0.679,
+        "rmse": 0.1305,
+        "mae": 0.0912,
+        "n": 1595,
+        "n_features_in_adj": 75
+      },
+      "test": {
+        "r2": 0.6421,
+        "adj_r2": 0.559,
+        "rmse": 0.1309,
+        "mae": 0.0922,
+        "n": 399,
+        "n_features_in_adj": 75
+      },
+      "n_nonzero": 75,
+      "intercept": 0.2444,
+      "top_coefficients": [
+        {
+          "feature": "racepctblack",
+          "coefficient": 0.0486,
+          "abs_coefficient": 0.0486
+        },
+        {
+          "feature": "RentLowQ",
+          "coefficient": -0.047,
+          "abs_coefficient": 0.047
+        },
+        {
+          "feature": "PersPerOccupHous",
+          "coefficient": 0.0462,
+          "abs_coefficient": 0.0462
+        },
+        {
+          "feature": "MedRent",
+          "coefficient": 0.0456,
+          "abs_coefficient": 0.0456
+        },
+        {
+          "feature": "PctIlleg",
+          "coefficient": 0.0424,
+          "abs_coefficient": 0.0424
+        },
+        {
+          "feature": "PctKids2Par",
+          "coefficient": -0.0368,
+          "abs_coefficient": 0.0368
+        },
+        {
+          "feature": "PctPersDenseHous",
+          "coefficient": 0.0303,
+          "abs_coefficient": 0.0303
+        },
+        {
+          "feature": "pctWInvInc",
+          "coefficient": -0.0301,
+          "abs_coefficient": 0.0301
+        },
+        {
+          "feature": "MalePctDivorce",
+          "coefficient": 0.03,
+          "abs_coefficient": 0.03
+        },
+        {
+          "feature": "PctPopUnderPov",
+          "coefficient": -0.029,
+          "abs_coefficient": 0.029
+        },
+        {
+          "feature": "agePct12t29",
+          "coefficient": -0.0276,
+          "abs_coefficient": 0.0276
+        },
+        {
+          "feature": "HousVacant",
+          "coefficient": 0.0273,
+          "abs_coefficient": 0.0273
+        }
+      ],
+      "calibration": {
+        "labels": [
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10"
+        ],
+        "mean_predicted": [
+          0.0026,
+          0.0382,
+          0.077,
+          0.1078,
+          0.1405,
+          0.1816,
+          0.2392,
+          0.3112,
+          0.41,
+          0.5982
+        ],
+        "mean_actual": [
+          0.0495,
+          0.06,
+          0.0777,
+          0.0922,
+          0.1247,
+          0.1497,
+          0.2413,
+          0.2858,
+          0.416,
+          0.6232
+        ],
+        "mean_residual": [
+          0.0469,
+          0.0218,
+          0.0008,
+          -0.0155,
+          -0.0158,
+          -0.0318,
+          0.002,
+          -0.0255,
+          0.006,
+          0.0251
+        ]
+      },
+      "alpha": 0.000412
+    },
+    "ElasticNet": {
+      "name": "ElasticNet",
+      "train": {
+        "r2": 0.6965,
+        "adj_r2": 0.6803,
+        "rmse": 0.1299,
+        "mae": 0.091,
+        "n": 1595,
+        "n_features_in_adj": 81
+      },
+      "test": {
+        "r2": 0.6418,
+        "adj_r2": 0.5503,
+        "rmse": 0.131,
+        "mae": 0.0927,
+        "n": 399,
+        "n_features_in_adj": 81
+      },
+      "n_nonzero": 81,
+      "intercept": 0.2444,
+      "top_coefficients": [
+        {
+          "feature": "PersPerOccupHous",
+          "coefficient": 0.0581,
+          "abs_coefficient": 0.0581
+        },
+        {
+          "feature": "RentLowQ",
+          "coefficient": -0.0481,
+          "abs_coefficient": 0.0481
+        },
+        {
+          "feature": "racepctblack",
+          "coefficient": 0.0481,
+          "abs_coefficient": 0.0481
+        },
+        {
+          "feature": "MedRent",
+          "coefficient": 0.0477,
+          "abs_coefficient": 0.0477
+        },
+        {
+          "feature": "PctIlleg",
+          "coefficient": 0.0388,
+          "abs_coefficient": 0.0388
+        },
+        {
+          "feature": "PctPersDenseHous",
+          "coefficient": 0.0338,
+          "abs_coefficient": 0.0338
+        },
+        {
+          "feature": "pctWInvInc",
+          "coefficient": -0.0327,
+          "abs_coefficient": 0.0327
+        },
+        {
+          "feature": "MalePctDivorce",
+          "coefficient": 0.0314,
+          "abs_coefficient": 0.0314
+        },
+        {
+          "feature": "agePct12t29",
+          "coefficient": -0.0312,
+          "abs_coefficient": 0.0312
+        },
+        {
+          "feature": "PctKids2Par",
+          "coefficient": -0.0312,
+          "abs_coefficient": 0.0312
+        },
+        {
+          "feature": "PctPopUnderPov",
+          "coefficient": -0.0308,
+          "abs_coefficient": 0.0308
+        },
+        {
+          "feature": "MalePctNevMarr",
+          "coefficient": 0.0289,
+          "abs_coefficient": 0.0289
+        }
+      ],
+      "calibration": {
+        "labels": [
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "D9",
+          "D10"
+        ],
+        "mean_predicted": [
+          0.0026,
+          0.0378,
+          0.0774,
+          0.1082,
+          0.1409,
+          0.1835,
+          0.2395,
+          0.3101,
+          0.4118,
+          0.5992
+        ],
+        "mean_actual": [
+          0.0583,
+          0.0537,
+          0.0793,
+          0.0915,
+          0.125,
+          0.1503,
+          0.2373,
+          0.2765,
+          0.424,
+          0.6245
+        ],
+        "mean_residual": [
+          0.0556,
+          0.0159,
+          0.0018,
+          -0.0167,
+          -0.0159,
+          -0.0332,
+          -0.0022,
+          -0.0336,
+          0.0122,
+          0.0253
+        ]
+      },
+      "alpha": 0.002424,
+      "l1_ratio": 0.1
+    }
+  },
+  "alpha_path": {
+    "labels": [
+      "0.0001",
+      "0.0004125",
+      "0.001701",
+      "0.007017",
+      "0.02894",
+      "0.1194",
+      "0.4924",
+      "2.031",
+      "8.377",
+      "34.55"
+    ],
+    "ridge_r2": [
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6484,
+      0.6489,
+      0.6503,
+      0.6529,
+      0.6563,
+      0.6583
+    ],
+    "lasso_r2": [
+      0.6536,
+      0.6555,
+      0.6524,
+      0.6448,
+      0.607,
+      0.3087,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023
+    ],
+    "elastic_r2": [
+      0.6497,
+      0.6524,
+      0.6558,
+      0.6554,
+      0.6522,
+      0.6375,
+      0.531,
+      -0.0023,
+      -0.0023,
+      -0.0023
+    ],
+    "full_alphas": [
+      0.0001,
+      0.000143,
+      0.000203,
+      0.000289,
+      0.000412,
+      0.000588,
+      0.000838,
+      0.001194,
+      0.001701,
+      0.002424,
+      0.003455,
+      0.004924,
+      0.007017,
+      0.01,
+      0.014251,
+      0.020309,
+      0.028943,
+      0.041246,
+      0.05878,
+      0.083768,
+      0.119378,
+      0.170125,
+      0.242446,
+      0.345511,
+      0.492388,
+      0.701704,
+      1.0,
+      1.425103,
+      2.030918,
+      2.894266,
+      4.124626,
+      5.878016,
+      8.376776,
+      11.937766,
+      17.012543,
+      24.24462,
+      34.551073,
+      49.238826,
+      70.170383,
+      100.0
+    ],
+    "full_ridge_r2": [
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6483,
+      0.6484,
+      0.6484,
+      0.6484,
+      0.6485,
+      0.6486,
+      0.6487,
+      0.6489,
+      0.6491,
+      0.6494,
+      0.6498,
+      0.6503,
+      0.6508,
+      0.6514,
+      0.6522,
+      0.6529,
+      0.6538,
+      0.6546,
+      0.6555,
+      0.6563,
+      0.6571,
+      0.6577,
+      0.6581,
+      0.6583,
+      0.6583,
+      0.6579,
+      0.6572
+    ],
+    "full_lasso_r2": [
+      0.6536,
+      0.6545,
+      0.6553,
+      0.6555,
+      0.6555,
+      0.6552,
+      0.6548,
+      0.6542,
+      0.6524,
+      0.6518,
+      0.6513,
+      0.649,
+      0.6448,
+      0.6407,
+      0.6338,
+      0.624,
+      0.607,
+      0.5777,
+      0.5272,
+      0.4511,
+      0.3087,
+      0.0294,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023
+    ],
+    "full_elastic_r2": [
+      0.6497,
+      0.6501,
+      0.6508,
+      0.6516,
+      0.6524,
+      0.6533,
+      0.6542,
+      0.655,
+      0.6558,
+      0.6561,
+      0.656,
+      0.6558,
+      0.6554,
+      0.6546,
+      0.6535,
+      0.6523,
+      0.6522,
+      0.6505,
+      0.6471,
+      0.6433,
+      0.6375,
+      0.6276,
+      0.6111,
+      0.5819,
+      0.531,
+      0.4499,
+      0.3276,
+      0.127,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023,
+      -0.0023
+    ],
+    "elastic_l1_ratio": 0.1
+  },
+  "coefficient_compare": {
+    "features": [
+      "PctRecImmig8",
+      "TotalPctDiv",
+      "PctPersOwnOccup",
+      "PersPerOccupHous",
+      "MalePctDivorce",
+      "PctHousOwnOcc",
+      "PctRecImmig10",
+      "MedRent",
+      "racepctblack",
+      "RentLowQ"
+    ],
+    "Linear": [
+      0.1281,
+      -0.1275,
+      -0.1233,
+      0.111,
+      0.0928,
+      0.0873,
+      -0.0795,
+      0.0749,
+      0.051,
+      -0.0577
+    ],
+    "Ridge": [
+      0.015,
+      -0.0007,
+      -0.0209,
+      0.0285,
+      0.0277,
+      0.0009,
+      0.0062,
+      0.0291,
+      0.0409,
+      -0.0387
+    ],
+    "Lasso": [
+      0.0111,
+      -0.0,
+      -0.0194,
+      0.0462,
+      0.03,
+      -0.0,
+      0.0,
+      0.0456,
+      0.0486,
+      -0.047
+    ],
+    "ElasticNet": [
+      0.0185,
+      -0.0,
+      -0.024,
+      0.0581,
+      0.0314,
+      0.0,
+      0.0,
+      0.0477,
+      0.0481,
+      -0.0481
+    ]
+  },
+  "best_test_model": "Lasso",
+  "selected_alphas": {
+    "Ridge": 34.551073,
+    "Lasso": 0.000412,
+    "ElasticNet": 0.002424,
+    "ElasticNet_l1_ratio": 0.1
+  },
+  "notes": [
+    "All numeric attributes in this release are already normalized to roughly 0-1 with 3-SD clipping, so RMSE is on that normalized crime-rate scale, not raw crimes per 100,000.",
+    "Coefficients are on standardized predictors: each value is the change in normalized ViolentCrimesPerPop for a one-standard-deviation increase in that feature, holding the other included features fixed.",
+    "These are associations. Family structure, poverty, and racial composition move together, so a coefficient is not a causal effect of that variable."
+  ]
+}
